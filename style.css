@@ -1,19 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,700;0,800;0,900;1,400;1,800;1,900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
   height: 100vh;
-  display: grid;
   place-items: center;
+  background-color: hsl(0, 0%, 94%);
+
+  display: grid;
+  grid-template-areas:
+    "main"
+    "attribution";
 }
 
 .main-section {
-  margin: 0 3%;
-  height: 300px;
-  background-color: aliceblue;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 15px 15px 60px 15px;
 
+  grid-area: main;
   display: grid;
+  grid-template: 25% 1fr / 100%;
+  grid-template-areas:
+    "form"
+    "result";
+}
+
+.form-section {
+  grid-area: form;
+  margin: 3em 0.9em;
+}
+
+.form-section .input-container {
+  display: flex;
+}
+
+.form-section .label {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+  max-width: 75px;
+}
+
+.input-container label {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: hsl(0, 1%, 40%);
+}
+
+.input-container input {
+  width: 75px;
+  border-radius: 7px;
+  border: 1px solid hsl(0, 0%, 80%);
+  color: hsl(0, 0%, 8%);
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 15px 10px;
+}
+
+.error input {
+  border: 1px solid hsl(0, 100%, 67%);
+}
+
+.error label {
+  color: hsl(0, 100%, 67%);
+}
+
+.input-container .error-message {
+  visibility: hidden;
+
+  color: hsl(0, 100%, 67%);
+  font-size: 0.7rem;
+  font-style: italic;
+}
+
+.border-bottom {
+  height: 1px;
+  background-color: hsl(0, 0%, 80%);
+  margin: 55px 15px 0 15px;
+
+  position: relative;
+}
+
+.border-bottom svg {
+  scale: 50%;
+  transform: translate(0, 5px);
+}
+
+#submit-btn {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border: none;
+  border-radius: 50%;
+  padding: 3px;
+  background-color: hsl(259, 100%, 65%);
+}
+
+.result-section {
+  grid-area: result;
+  margin: 30px 30px;
+
+  font-size: 2.5rem;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.result-section span {
+  color: hsl(259, 100%, 65%);
+  margin-right: 5px;
+}
+
+.attribution {
+  grid-area: attribution;
+  max-width: 300px;
+  text-align: center;
+}
+
+@media (min-width: 1440px) {
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
