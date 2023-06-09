@@ -31,12 +31,6 @@ function checkForErrors() {
         showError(index, "Must be a valid month");
     }
   });
-  if (
-    parseInt(inputs[2].value) > getCurrentDate().getFullYear() &&
-    parseInt(inputs[1].value) - 1 >= getCurrentDate().getMonth() &&
-    parseInt(inputs[0].value) >= getCurrentDate().getDate()
-  )
-    showError(0, "Must be in the past");
   checkDate();
 }
 
@@ -75,20 +69,33 @@ function countDifference() {
   let monthsDiff = getCurrentDate().getMonth() - getUserDate().getMonth();
   let daysDiff = getCurrentDate().getDate() - getUserDate().getDate();
 
-  if (monthsDiff < 0) {
-    yearsDiff--;
-    monthsDiff = monthsDiff + 12;
-  }
   if (daysDiff < 0) {
     monthsDiff--;
     daysDiff = daysInMonths[getUserDate().getMonth()] + daysDiff;
+  }
+  if (monthsDiff <= 0) {
+    yearsDiff--;
+    monthsDiff += 12;
+  }
+  if (monthsDiff == 12) {
+    yearsDiff++;
+    monthsDiff = 0;
   }
 
   return [yearsDiff, monthsDiff, daysDiff];
 }
 
 function updateSpans() {
+  const diffArr = countDifference();
   spans.forEach((span, index) => {
-    span.innerHTML = countDifference()[index];
+    let counter = 0;
+    span.innerHTML = 0;
+    let interval = setInterval(() => {
+      if (counter > diffArr[index]) {
+        clearInterval(interval);
+      } else {
+        span.innerHTML = counter++;
+      }
+    }, 15);
   });
 }

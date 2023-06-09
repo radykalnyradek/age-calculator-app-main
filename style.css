@@ -9,11 +9,11 @@
 
 body {
   height: 100vh;
-  padding: 5% 5%;
+  margin: 0 5%;
   background-color: hsl(0, 0%, 94%);
 
   display: grid;
-  grid-template: 85% 15% / 100%;
+  grid-template: 1fr minmax(50px, 150px) / 100%;
   grid-template-areas:
     "main"
     "attribution";
@@ -21,11 +21,12 @@ body {
 
 .main-section {
   background-color: hsl(0, 0%, 100%);
-  border-radius: 15px 15px 60px 15px;
+  border-radius: 15px 15px 90px 15px;
+  margin-top: 20px;
 
   grid-area: main;
   display: grid;
-  grid-template: 25% 1fr / 100%;
+  grid-template: minmax(200px, 220px) 1fr / minmax(250px, 320px);
   grid-template-areas:
     "form"
     "result";
@@ -34,7 +35,9 @@ body {
 
 .form-section {
   grid-area: form;
-  margin: 3em 0.9em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-section .input-container {
@@ -105,6 +108,11 @@ body {
   border-radius: 50%;
   padding: 3px;
   background-color: hsl(259, 100%, 65%);
+  transition: 0.3s background-color;
+}
+
+#submit-btn:hover {
+  background-color: hsl(259, 78%, 55%);
 }
 
 .result-section {
@@ -112,7 +120,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 250px;
+  margin: 40px 0;
 
   font-size: 2.5rem;
   font-weight: 800;
@@ -125,9 +133,11 @@ body {
 }
 
 .attribution {
-  margin-top: 50px;
   grid-area: attribution;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 @media (min-width: 1440px) {
@@ -143,4 +153,80 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+@media (min-width: 1440px) {
+  .main-section {
+    border-radius: 15px 15px 150px 15px;
+    padding: 30px 40px;
+
+    grid-template: minmax(100px, 150px) 1fr / minmax(600px, 700px);
+    grid-template-areas:
+      "form"
+      "result";
+  }
+
+  .form-section {
+    justify-content: left;
+  }
+
+  .form-section .label {
+    display: flex;
+    flex-direction: column;
+    margin: 0 15px;
+    max-width: 155px;
+  }
+
+  .form-section .label:first-of-type {
+    margin-left: 0;
+  }
+
+  .form-section .input-container {
+    justify-content: left;
+  }
+
+  .input-container input {
+    width: 120px;
+  }
+
+  .input-container label {
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding-bottom: 5px;
+  }
+
+  .date-form {
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .border-bottom {
+    margin: 40px 0 0 0;
+  }
+
+  .border-bottom svg {
+    scale: 75%;
+  }
+
+  #submit-btn {
+    position: absolute;
+    left: 95%;
+    padding: 12px;
+  }
+
+  .result-section {
+    justify-content: left;
+    font-size: 4rem;
+    font-weight: 900;
+  }
+
+  .result-section p {
+    height: 80px;
+  }
+
+  .purple-span {
+    letter-spacing: 5px;
+  }
 }
