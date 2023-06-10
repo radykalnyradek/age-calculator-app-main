@@ -73,7 +73,7 @@ function countDifference() {
     monthsDiff--;
     daysDiff = daysInMonths[getUserDate().getMonth()] + daysDiff;
   }
-  if (monthsDiff <= 0) {
+  if (monthsDiff < 0) {
     yearsDiff--;
     monthsDiff += 12;
   }
